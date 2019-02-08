@@ -22,10 +22,6 @@ __END__
 
 =pod
 
-=head1 DESCRIPTION
-
-Check if the given value is a valid IBAN
-
 =head1 SYNOPSIS
 
 Your F<test.pl>:
@@ -45,5 +41,16 @@ Your F<validate.yml>:
   bank_account:
     type: required
     plugin: IBAN
+
+=head1 METHODS
+
+=head2 check
+
+This checks if a given value is a valid IBAN. More information about
+the I<International Bank Account Number> is available on
+L<Wikipedia|https://en.wikipedia.org/wiki/International_Bank_Account_Number>.
+
+C<Data::Validate::WithYAML::Plugin::IBAN> uses L<Algorithm::CheckDigits>
+for the IBAN verification.
 
 =cut
