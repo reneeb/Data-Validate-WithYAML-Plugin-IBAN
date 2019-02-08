@@ -1,0 +1,100 @@
+[![Build Status](https://travis-ci.org/reneeb/Data-Validate-WithYAML-Plugin-IBAN.svg?branch=master)](https://travis-ci.org/reneeb/Data-Validate-WithYAML-Plugin-IBAN)
+[![Kwalitee status](http://cpants.cpanauthors.org/dist/Data-Validate-WithYAML-Plugin-IBAN.png)](http://cpants.charsbar.org/dist/overview/Data-Validate-WithYAML-Plugin-IBAN)
+[![GitHub issues](https://img.shields.io/github/issues/reneeb/Data-Validate-WithYAML-Plugin-IBAN.svg)](https://github.com/reneeb/Data-Validate-WithYAML-Plugin-IBAN/issues)
+
+# NAME
+
+Data::Validate::WithYAML::Plugin::IBAN - check whether a given value is a valid IBAN
+
+# VERSION
+
+version 0.03
+
+# SYNOPSIS
+
+Your `test.pl`:
+
+    use Data::Validate::WithYAML;
+    
+    my $validator = Data::Validate::WithYAML->new( 'validate.yml' );
+    my %params    = (
+        iban => 'DE013958219385182',
+        # more user input
+    );
+    my %errors = $validator->validate( \%params );
+
+Your `validate.yml`:
+
+    ---
+    bank_account:
+      type: required
+      plugin: IBAN
+
+# METHODS
+
+## check
+
+This checks if a given value is a valid IBAN. More information about
+the _International Bank Account Number_ is available on
+[Wikipedia](https://en.wikipedia.org/wiki/International_Bank_Account_Number).
+
+`Data::Validate::WithYAML::Plugin::IBAN` uses [Algorithm::CheckDigits](https://metacpan.org/pod/Algorithm::CheckDigits)
+for the IBAN verification.
+
+
+
+# Development
+
+The distribution is contained in a Git repository, so simply clone the
+repository
+
+```
+$ git clone http://github.com/reneeb/Data-Validate-WithYAML-Plugin-IBAN.git
+```
+
+and change into the newly-created directory.
+
+```
+$ cd Data-Validate-WithYAML-Plugin-IBAN
+```
+
+The project uses [`Dist::Zilla`](https://metacpan.org/pod/Dist::Zilla) to
+build the distribution, hence this will need to be installed before
+continuing:
+
+```
+$ cpanm Dist::Zilla
+```
+
+To install the required prequisite packages, run the following set of
+commands:
+
+```
+$ dzil authordeps --missing | cpanm
+$ dzil listdeps --author --missing | cpanm
+```
+
+The distribution can be tested like so:
+
+```
+$ dzil test
+```
+
+To run the full set of tests (including author and release-process tests),
+add the `--author` and `--release` options:
+
+```
+$ dzil test --author --release
+```
+
+# AUTHOR
+
+Renee Baecker <reneeb@cpan.org>
+
+# COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2015 by Renee Baecker.
+
+This is free software, licensed under:
+
+    The Artistic License 2.0 (GPL Compatible)
