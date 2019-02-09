@@ -8,7 +8,7 @@ Data::Validate::WithYAML::Plugin::IBAN - check whether a given value is a valid 
 
 # VERSION
 
-version 0.03
+version 0.04
 
 # SYNOPSIS
 
